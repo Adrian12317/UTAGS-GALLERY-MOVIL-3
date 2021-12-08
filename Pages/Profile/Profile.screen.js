@@ -1,83 +1,77 @@
-import React, { useState,useEffect } from 'react'
-import { Avatar,Card } from 'react-native-elements';
-import CameraScreen from '../Camera/Camera';
-import { database,auth,storage } from '../../firebase';
-import {StyledContainer, StyledText, StyledView} from './styledProfileComponent';
-import i18n from '../../localization/i18n';
-
-
+import React, { useState, useEffect } from "react";
+import { Avatar, Card } from "react-native-elements";
+import CameraScreen from "../Camera/Camera";
+import { database, auth, storage } from "../../firebase";
+import {
+  StyledContainer,
+  StyledSubTitle,
+  StyledTitle,
+  StyledView,
+} from "./styledProfileComponent";
+import i18n from "../../localization/i18n";
 
 export default function Profile() {
-    const [takePhoto,setTakePhoto] = useState(false)
-    const [name,setName] = useState("")
-    const [email,setEmail] = useState("")
-    const [avatar,setAvatar] = useState("")
+  const [takePhoto, setTakePhoto] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [avatar, setAvatar] = useState("");
 
-    useEffect(()=>{
-        const data = database.ref('Profile').orderByChild('id').equalTo(auth.currentUser.uid)
-        data.on('value',(snapshot)=>{
-            const values = snapshot.val()
-            
-             const myData = []
-            for (let id in values){
-                myData.push({id,...values[id]})
-            }
-             setName(myData[0].username);
-             setEmail(myData[0].email);     
-         })
-         storage.ref(auth.currentUser.uid + '/profile.jpg').getDownloadURL ().then((imgUrl) => {
-            setAvatar(imgUrl); 
-        })
-    
-    },[])
+  useEffect(() => {
+    const data = database
+      .ref("Profile")
+      .orderByChild("id")
+      .equalTo(auth.currentUser.uid);
+    data.on("value", (snapshot) => {
+      const values = snapshot.val();
 
-    
+      const myData = [];
+      for (let id in values) {
+        myData.push({ id, ...values[id] });
+      }
+      setName(myData[0].username);
+      setEmail(myData[0].email);
+    });
+    storage
+      .ref(auth.currentUser.uid + "/profile.jpg")
+      .getDownloadURL()
+      .then((imgUrl) => {
+        setAvatar(imgUrl);
+      });
+  }, []);
 
-    return(
-        <>
-        {!takePhoto?(
-            
+  return (
+    <>
+      {!takePhoto ? (
         <StyledContainer>
-                        
-
-            <Card >
-             
+          <Card>
             <Card.Title>{i18n.t("PROFILE").PROFILE_TITLE}</Card.Title>
-            <Card.Divider/>
-            <StyledView >
-            <Avatar
+            <Card.Divider />
+            <StyledView>
+              <Avatar
                 rounded
                 size="xlarge"
                 source={{
-                    uri:avatar?avatar:"https://thumbs.dreamstime.com/b/default-avatar-profile-flat-icon-vector-contact-symbol-illustration-184752213.jpg",
+                  uri: avatar
+                    ? avatar
+                    : "https://thumbs.dreamstime.com/b/default-avatar-profile-flat-icon-vector-contact-symbol-illustration-184752213.jpg",
                 }}
-                onPress={()=>setTakePhoto(true)}
-            />
+                onPress={() => setTakePhoto(true)}
+              />
             </StyledView>
-             <Card.Divider style={{marginTop:10,marginRight:10}}/>
-            <StyledView >
-            <StyledText >
-                {name}
-            </StyledText>
-            <StyledText >
-               {email}
-            </StyledText>
+            <Card.Divider style={{ marginTop: 10, marginRight: 10 }} />
+            <StyledView>
+              <StyledTitle>{name}</StyledTitle>
+              <StyledSubTitle>{email}</StyledSubTitle>
             </StyledView>
-                  
-          
-           
-            </Card>
-
-
-
+          </Card>
         </StyledContainer>
-        ):
-        (
-            <CameraScreen setTakePhoto={setTakePhoto} setAvatar={setAvatar} module="profile"/>
-        )
-
-        }
-        </>
-        
-    );
+      ) : (
+        <CameraScreen
+          setTakePhoto={setTakePhoto}
+          setAvatar={setAvatar}
+          module="profile"
+        />
+      )}
+    </>
+  );
 }
