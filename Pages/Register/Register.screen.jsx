@@ -9,14 +9,14 @@ import {
   StyledButtonText,
   StyledButtonTextOutline,
   StyledButton,
-  StyledButtonOutline
-} from './styledRegisterComponent';
+  StyledButtonOutline,
+  StyledText,
+} from "./styledRegisterComponent";
 import { auth, database } from "../../firebase";
-import logo from "../../media/images/login.png";
+import logo from "../../assets/images/signup.png";
 import i18n from "../../localization/i18n";
 
 const RegisterPage = () => {
-
   const [email, setEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [pwd, setPwd] = useState("");
@@ -25,9 +25,7 @@ const RegisterPage = () => {
 
   useEffect(() => {
     const unsuscribe = auth.onAuthStateChanged((user) => {
-
       if (user) {
-
         navigation.replace("Home");
       }
     });
@@ -39,31 +37,26 @@ const RegisterPage = () => {
     auth
       .createUserWithEmailAndPassword(email, pwd)
       .then((userCredentials) => {
-
         const user = userCredentials.user;
 
-
-        const ref = database.ref('Profile/');
+        const ref = database.ref("Profile/");
         const data = {
-            id:user.uid,
-            username:userName,
-            email:user.email,
-            avatar:""
-        }
+          id: user.uid,
+          username: userName,
+          email: user.email,
+          avatar: "",
+        };
 
-       ref.push(data).then(()=>{
-        console.log(".................");
-        console.log("usuario registrado: ");
-        console.log(user.email);
-        console.log(user.uid);
-        console.log();
-        console.log(".................");
-       });
-
-
+        ref.push(data).then(() => {
+          console.log(".................");
+          console.log("usuario registrado: ");
+          console.log(user.email);
+          console.log(user.uid);
+          console.log();
+          console.log(".................");
+        });
       })
       .catch((error) => {
-
         alert(error.message);
       });
   };
@@ -72,12 +65,11 @@ const RegisterPage = () => {
     navigation.replace("Login");
   };
 
-
   return (
-
     <StyledContainer>
       <InputContainer>
-        <ImageLogo source={logo}/>
+        <ImageLogo source={logo} />
+        <StyledText>Glad to see you join</StyledText>
 
         <StyledInput
           placeholder={i18n.t("SIGNUP").SIGNUP_NAME}
@@ -101,8 +93,10 @@ const RegisterPage = () => {
         <StyledButton onPress={handleSignup}>
           <StyledButtonText>{i18n.t("SIGNUP").SIGNUP_SIGN_UP}</StyledButtonText>
         </StyledButton>
-        <StyledButtonOutline onPress={()=>handleReturnLogin()}>
-          <StyledButtonTextOutline>{i18n.t("SIGNUP").SIGNUP_BACK_LOGIN}</StyledButtonTextOutline>
+        <StyledButtonOutline onPress={() => handleReturnLogin()}>
+          <StyledButtonTextOutline>
+            {i18n.t("SIGNUP").SIGNUP_BACK_LOGIN}
+          </StyledButtonTextOutline>
         </StyledButtonOutline>
       </StyledButtonContainer>
     </StyledContainer>

@@ -49,7 +49,7 @@ const LoginPage = () => {
     <StyledContainer>
       <InputContainer>
         <ImageLogo source={logo} resizeMode="contain" />
-        <StyledText>Welcome to appName</StyledText>
+        <StyledText>Welcome Back</StyledText>
 
         <StyledInput
           placeholder={i18n.t("LOGIN").LOGIN_EMAIL}
