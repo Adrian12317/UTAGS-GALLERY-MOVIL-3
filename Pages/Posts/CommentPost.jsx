@@ -139,7 +139,7 @@ export default function CommentPost({setIsComment,post_id,getItems}) {
             ></StyledInputCreate>
             <Button
                 icon={<Icon style={styles.buttonLike} name='comments' />}
-                buttonStyle={{width:300,marginBottom:8,marginTop:4}}
+                buttonStyle={{backgroundColor: "#2F3676", width:300,marginBottom:8,marginTop:4}}
                 title={i18n.t("POST_COMMENT").POST_COMMENT_COMMENT}
                 onPress={()=>{handleComment()}}
             />
