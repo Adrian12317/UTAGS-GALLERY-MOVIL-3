@@ -49,7 +49,7 @@ const LoginPage = () => {
     <StyledContainer>
       <InputContainer>
         <ImageLogo source={logo} resizeMode="contain" />
-        <StyledText>Welcome Back</StyledText>
+        <StyledText>{i18n.t("LOGIN").LOGIN_WELCOME_TEXT}</StyledText>
 
         <StyledInput
           placeholder={i18n.t("LOGIN").LOGIN_EMAIL}

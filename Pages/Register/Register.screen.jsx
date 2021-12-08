@@ -69,7 +69,7 @@ const RegisterPage = () => {
     <StyledContainer>
       <InputContainer>
         <ImageLogo source={logo} />
-        <StyledText>Glad to see you join</StyledText>
+        <StyledText>{i18n.t("SIGNUP").SIGNUP_WELCOME_TEXT}</StyledText>
 
         <StyledInput
           placeholder={i18n.t("SIGNUP").SIGNUP_NAME}

@@ -18,13 +18,13 @@ export default function CommentPost({setIsComment,post_id,getItems}) {
     const [isVisible,setIsVisible] = useState(false);
     const [previewUri,setPreviewUri] = useState();
     const imageDefault = "https://www.smartdatajob.com/images/joomlart/demo/default.jpg";
-    
+
     const getPost = async () =>{
         // console.log(post_id);
       await  axios.get('https://api-utagsgallery-codes.herokuapp.com/posts/'+post_id)
       .then(function ({data:{data}}) {
         // handle success
-       
+
         setPost({...data[0]})
       })
       .catch(function (error) {
@@ -38,9 +38,9 @@ export default function CommentPost({setIsComment,post_id,getItems}) {
       await  axios.get('https://api-utagsgallery-codes.herokuapp.com/comments/'+post_id)
       .then(function ({data}) {
         // handle success
-        
+
        setComments([...data])
-        
+
       })
       .catch(function (error) {
         // handle error
@@ -75,7 +75,7 @@ export default function CommentPost({setIsComment,post_id,getItems}) {
           // handle error
           console.log(error);
             return alert("We have an error");
-          
+
         })
    }
 
@@ -107,13 +107,13 @@ export default function CommentPost({setIsComment,post_id,getItems}) {
           // handle error
           console.log(error);
             return alert("We have an error");
-          
+
         })
-      
+
     } },
   ]);
 
-  
+
 
     return(
         <StyledContainerStart>
@@ -122,7 +122,7 @@ export default function CommentPost({setIsComment,post_id,getItems}) {
              <Icon style={{fontSize:16,color:"black"}} name='arrow-left' onPress={()=>setIsComment(false)} />
             <Card.Title>{post.title}</Card.Title>
             <Card.Divider/>
-            <Card.Image onPress={()=>handlePreview(post.image_url)} style={styles.image} source={post.image_url? {uri:`${post.image_url}`}:{uri:imageDefault}}>             
+            <Card.Image onPress={()=>handlePreview(post.image_url)} style={styles.image} source={post.image_url? {uri:`${post.image_url}`}:{uri:imageDefault}}>
             </Card.Image>
             <Text style={{marginBottom: 10}}>
                {post.content}
@@ -139,7 +139,7 @@ export default function CommentPost({setIsComment,post_id,getItems}) {
             ></StyledInputCreate>
             <Button
                 icon={<Icon style={styles.buttonLike} name='comments' />}
-                buttonStyle={{width:120}}
+                buttonStyle={{width:300,marginBottom:8,marginTop:4}}
                 title={i18n.t("POST_COMMENT").POST_COMMENT_COMMENT}
                 onPress={()=>{handleComment()}}
             />
@@ -154,10 +154,10 @@ export default function CommentPost({setIsComment,post_id,getItems}) {
               </View>
             ))}
             </ScrollView>
-           
+
             </Card>
         </StyledContainerStart>
-           
+
 
 
     );
@@ -165,17 +165,17 @@ export default function CommentPost({setIsComment,post_id,getItems}) {
 
 const styles = StyleSheet.create({
     image:{
-      
+
         width: 300,
         height:200,
         marginBottom:10
       },
 
     buttonLike:{
-      
+
       color: "#ffff",
       marginRight:10
-      
-     
-    }  
+
+
+    }
   });

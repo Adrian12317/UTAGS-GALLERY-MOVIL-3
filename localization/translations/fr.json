@@ -3,14 +3,16 @@
         "LOGIN_EMAIL": "Courriel ",
         "LOGIN_PASSWORD": "Mot de passe",
         "LOGIN_LOGIN": "Connexion",
-        "LOGIN_SIGN_UP": "Registre"
+        "LOGIN_SIGN_UP": "Registre",
+        "LOGIN_WELCOME_TEXT": "Bienvenue à nouveau"
      },
      "SIGNUP": {
         "SIGNUP_NAME": "Nom de l'utilisateur",
         "SIGNUP_EMAIL": "Courriel",
         "SIGNUP_PASSWORD": "Mot de passe",
         "SIGNUP_SIGN_UP": "Registre",
-        "SIGNUP_BACK_LOGIN": "Retour à la page d'accueil"
+        "SIGNUP_BACK_LOGIN": "Retour à la page d'accueil",
+        "SIGNUP_WELCOME_TEXT": "Heureux de vous voir vous joindre à nous"
      },
      "TABS":{
         "TABS_POSTS": "Publications",

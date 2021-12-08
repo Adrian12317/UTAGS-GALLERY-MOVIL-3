@@ -3,14 +3,16 @@
         "LOGIN_EMAIL": "Email",
         "LOGIN_PASSWORD": "Password",
         "LOGIN_LOGIN": "Accesso",
-        "LOGIN_SIGN_UP": "Registra"
+        "LOGIN_SIGN_UP": "Registra",
+        "LOGIN_WELCOME_TEXT": "Bentornato"
      },
      "SIGNUP": {
         "SIGNUP_NAME": "Nome utente",
         "SIGNUP_EMAIL": "Email",
         "SIGNUP_PASSWORD": "Password",
         "SIGNUP_SIGN_UP": "Registra",
-        "SIGNUP_BACK_LOGIN": "Torna al login"
+        "SIGNUP_BACK_LOGIN": "Torna al login",
+        "SIGNUP_WELCOME_TEXT": "Felice di vederti unire"
      },
      "TABS":{
         "TABS_POSTS": "Pubblicazioni",
